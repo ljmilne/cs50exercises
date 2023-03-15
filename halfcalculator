@@ -1,0 +1,32 @@
+// as per the brief, this script calculates half of a restaurant bill,
+// specifying that tips must be calculated after tax
+// aspects of consideration are...Data types, operations, type casting, return value
+
+#include <cs50.h>
+#include <stdio.h>
+
+float half(float bill, float tax, int tip);
+
+int main(void)
+{
+    float bill_amount = get_float("Bill before tax and tip: ");
+    float tax_percent = get_float("Sale Tax Percent: ");
+    int tip_percent = get_int("Tip percent: ");
+
+    printf("You will owe $%.2f each!\n", half(bill_amount, tax_percent, tip_percent));
+}
+
+// TODO: Complete the function
+float half(float bill, float tax, int tip)
+{
+    tax = (bill / 100) * (double) tax;
+    float n = bill + tax;
+    tip = ((float) tip / 100) * n; //I have cast tip to a float, allowing the use of decimal points 
+
+    float z = ( n + tip) / 2;
+
+    return z;
+    
+  //this returns close to what is needed, but it is a few pennies out every time, which leads me to believe some decimal rounding is happening.
+  //I feel like i need to typecast one of these values (possibly the sales tax?) to something other than a float, but I can't seem to figure it out
+}
